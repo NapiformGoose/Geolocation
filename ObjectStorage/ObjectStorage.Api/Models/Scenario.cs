@@ -10,5 +10,6 @@
 
         public List<MapObject> MapObjects { get; set; }
 
+        public List<Trigger> Triggers { get; set; }
     }
 }
