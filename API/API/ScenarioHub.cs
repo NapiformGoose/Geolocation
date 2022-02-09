@@ -1,6 +1,6 @@
 ﻿using Geolocation.API.Dto;
-using Geolocation.ObjectStorage.Api.Enums;
-using Geolocation.ObjectStorage.Api.Models;
+using Geolocation.Logic.Api.Enums;
+using Geolocation.Logic.Api.Models;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Geolocation.API
@@ -13,7 +13,7 @@ namespace Geolocation.API
             var actualScenarioData = new ActualScenarioData
             {
                 MapObjects = new List<MapObject> { mapObject },
-                Tasks = new List<ScenarioTask> { new ScenarioTask (1, "taskTestName", ScenarioTaskStatus.Сompleted) }
+                Tasks = new List<ScenarioTask> { new ScenarioTask (Guid.NewGuid().ToString(), "taskTestName", ScenarioTaskStatus.Сompleted) }
             };
             await this.Clients.All.SendAsync("GetActualScenarioData", actualScenarioData);
         }

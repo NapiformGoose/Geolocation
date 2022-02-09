@@ -1,36 +1,49 @@
 using Geolocation.API;
+using Geolocation.Logic.Api.Services;
+using Geolocation.Logic.Core.Services;
+using Geolocation.ObjectStorage.Api.Services;
+using Geolocation.ObjectStorage.Core.Services;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+}); ;
 
-builder.Services.AddSignalRCore(); //todo выбрать какой именно нужен
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<IScenarioObjectStorage, ScenarioObjectStorage>();
+builder.Services.AddTransient<IScenarioService, ScenarioService>();
 builder.Services.AddSignalR();
 builder.Services.AddCors();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
-
-app.UseCors(builder => builder.AllowAnyOrigin());
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
 app.UseRouting();
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+app.UseCors(builder => builder.AllowAnyOrigin());
+
+app.MapControllers();
 
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapHub<ScenarioHub>("/scenario");
 });
+
+
+
 app.Run();

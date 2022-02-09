@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\..\Logic\Logic.Api\Logic.Api.csproj" />
   </ItemGroup>
 
 </Project>

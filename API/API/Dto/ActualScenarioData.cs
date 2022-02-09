@@ -1,5 +1,4 @@
-﻿using Geolocation.ObjectStorage.Api.Models;
-using ScenarioTask = Geolocation.ObjectStorage.Api.Models.ScenarioTask;
+﻿using Geolocation.Logic.Api.Models;
 
 namespace Geolocation.API.Dto
 {

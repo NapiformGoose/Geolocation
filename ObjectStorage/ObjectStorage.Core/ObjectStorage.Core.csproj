@@ -8,4 +8,9 @@
     <RootNamespace>Geolocation.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Logic\Logic.Api\Logic.Api.csproj" />
+    <ProjectReference Include="..\ObjectStorage.Api\ObjectStorage.Api.csproj" />
+  </ItemGroup>
+
 </Project>
