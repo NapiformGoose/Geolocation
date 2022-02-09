@@ -1,6 +1,6 @@
-﻿using Geolocation.ObjectStorage.Api.Enums;
+﻿using Geolocation.Logic.Api.Enums;
 
-namespace ObjectStorage.Api.Models
+namespace Geolocation.Logic.Api.Models
 {
     public class Task
     {

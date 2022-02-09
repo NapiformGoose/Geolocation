@@ -1,4 +1,4 @@
-﻿namespace Geolocation.ObjectStorage.Api.Models
+﻿namespace Geolocation.Logic.Api.Models
 {
     public class Scenario
     {
