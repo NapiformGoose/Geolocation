@@ -1,6 +1,6 @@
-﻿namespace ObjectStorage.Api.Enums
+﻿namespace Geolocation.ObjectStorage.Api.Enums
 {
-    public enum TaskStatus
+    public enum ScenarioTaskStatus
     {
         Undefined,
 

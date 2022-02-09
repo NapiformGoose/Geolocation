@@ -1,4 +1,6 @@
-﻿namespace ObjectStorage.Api.Models
+﻿using Geolocation.ObjectStorage.Api.Enums;
+
+namespace ObjectStorage.Api.Models
 {
     public class Task
     {
@@ -6,6 +8,6 @@
 
         public string Name { get; set; }
 
-        public TaskStatus Status { get; set; }
+        public ScenarioTaskStatus Status { get; set; }
     }
 }

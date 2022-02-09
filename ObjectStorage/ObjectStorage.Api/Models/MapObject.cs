@@ -1,6 +1,6 @@
-﻿using ObjectStorage.Api.Enums;
+﻿using Geolocation.ObjectStorage.Api.Enums;
 
-namespace ObjectStorage.Api.Models
+namespace Geolocation.ObjectStorage.Api.Models
 {
     public class MapObject
     {

@@ -1,4 +1,4 @@
-﻿namespace ObjectStorage.Api.Models
+﻿namespace Geolocation.ObjectStorage.Api.Models
 {
     public class Scenario
     {
@@ -6,7 +6,7 @@
 
         public string Name { get; set; }
 
-        public List<Task> Tasks { get; set; }
+        public List<ScenarioTask> Tasks { get; set; }
 
         public List<MapObject> MapObjects { get; set; }
 
