@@ -1,4 +1,4 @@
-﻿namespace ObjectStorage.Api.Enums
+﻿namespace Geolocation.ObjectStorage.Api.Enums
 {
     public enum TriggerType
     {

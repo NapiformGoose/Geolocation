@@ -1,4 +1,4 @@
-﻿namespace ObjectStorage.Api.Models
+﻿namespace Geolocation.ObjectStorage.Api.Models
 {
     public class Size
     {
