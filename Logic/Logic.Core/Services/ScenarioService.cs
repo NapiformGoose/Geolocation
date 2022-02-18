@@ -1,46 +1,41 @@
 ﻿using Geolocation.Logic.Api.Models;
 using Geolocation.Logic.Api.Services;
 using Geolocation.ObjectStorage.Api.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Geolocation.Logic.Core.Services
 {
     public class ScenarioService : IScenarioService
     {
-        private readonly IScenarioObjectStorage _scenarioObjectStorage;
+        private readonly IRepository<Scenario> _scenarioRepository;
 
-        public ScenarioService(IScenarioObjectStorage scenarioObjectStorage)
+        public ScenarioService(IDataService dataService)
         {
-            _scenarioObjectStorage = scenarioObjectStorage;
+            _scenarioRepository = dataService.Scenarios;
         }
 
         public Scenario Get(string scenarioId)
         {
-            return _scenarioObjectStorage.Get(scenarioId);
+            return _scenarioRepository.Get(scenarioId);
         }
 
         public string Create(Scenario scenario)
         {
-            return _scenarioObjectStorage.Add(scenario);
+            return _scenarioRepository.Create(scenario);
         }
 
         public string Delete(string scenarioId)
         {
-            return _scenarioObjectStorage.Delete(scenarioId);
+            return _scenarioRepository.Delete(scenarioId);
         }
 
         public Scenario Edit(Scenario scenario)
         {
-            return _scenarioObjectStorage.Edit(scenario);
+            return _scenarioRepository.Edit(scenario);
         }
 
         public List<Scenario> List()
         {
-            return _scenarioObjectStorage.List();
+            return _scenarioRepository.GetAll().ToList();
         }
     }
 }

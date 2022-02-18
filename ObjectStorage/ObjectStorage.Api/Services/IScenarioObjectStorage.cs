@@ -4,14 +4,12 @@ namespace Geolocation.ObjectStorage.Api.Services
 {
     public interface IScenarioObjectStorage
     {
-        Scenario Get(string scenarioId);
+        void AddRunningScenario(Scenario scenario);
 
-        string Add(Scenario scenario);
+        void ClearStorage();
 
-        Scenario Edit(Scenario scenario);
+        MapObject GetMapObject(string mapObjectId);
 
-        string Delete(string scenarioId);
-
-        List<Scenario> List();
+        List<Trigger> GetMapObjectTriggers(string mapObjectId);
     }
 }

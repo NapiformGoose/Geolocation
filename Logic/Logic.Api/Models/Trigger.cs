@@ -8,7 +8,7 @@ namespace Geolocation.Logic.Api.Models
 
         public string Name { get; set; }
 
-        public List<Marker> InitiatingMarkers { get; set; }
+        public List<string> InitiatingMapObjectIds { get; set; }
 
         public TriggerType Type { get; set; }
 

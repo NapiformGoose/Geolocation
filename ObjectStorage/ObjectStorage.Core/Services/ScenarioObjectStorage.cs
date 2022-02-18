@@ -10,52 +10,31 @@ namespace Geolocation.ObjectStorage.Core.Services
 {
     public class ScenarioObjectStorage : IScenarioObjectStorage
     {
-        private Dictionary<string, Scenario> _scenarios { get; }
+        private Scenario _runningScenario;
+
 
         public ScenarioObjectStorage()
         {
-            _scenarios = new Dictionary<string, Scenario>();
         }
 
-        public Scenario Get(string scenarioId)
+        public void AddRunningScenario(Scenario scenario)
         {
-            if (_scenarios.TryGetValue(scenarioId, out var scenario))
-            {
-                return scenario;
-            }
-            return null;
+            _runningScenario = scenario;
         }
 
-        public string Add(Scenario scenario)
+        public void ClearStorage()
         {
-            var id = Guid.NewGuid().ToString();
-            return _scenarios.TryAdd(id, scenario) ? id : null;
+            _runningScenario = null;
         }
 
-        public Scenario Edit(Scenario scenario)
+        public MapObject GetMapObject(string mapObjectId)
         {
-            if (_scenarios.TryGetValue(scenario.Id, out var oldScenario))
-            {
-                oldScenario = scenario;
-            }
-            return oldScenario;
+            return _runningScenario.MapObjects.Where(mo => mo.Id.Equals(mapObjectId)).FirstOrDefault();
         }
 
-        public string Delete(string scenarioId)
+        public List<Trigger> GetMapObjectTriggers(string mapObjectId)
         {
-            _scenarios.Remove(scenarioId);
-            return scenarioId;
-        }
-
-        public List<Scenario> List()
-        {
-            var list = new List<Scenario>(_scenarios.Count);
-            foreach (var scenario in _scenarios)
-            {
-                list.Add(scenario.Value);
-            }
-
-            return list;
+            return _runningScenario.Triggers.Where(trigger => trigger.InitiatingMapObjectIds.Contains(mapObjectId)).ToList();
         }
     }
 }

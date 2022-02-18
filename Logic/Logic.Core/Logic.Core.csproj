@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ObjectStorage\ObjectStorage.Api\ObjectStorage.Api.csproj" />
+    <ProjectReference Include="..\..\ObjectStorage\ObjectStorage.Core\ObjectStorage.Core.csproj" />
     <ProjectReference Include="..\Logic.Api\Logic.Api.csproj" />
   </ItemGroup>
 
