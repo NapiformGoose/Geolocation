@@ -1,25 +1,44 @@
-﻿using Geolocation.Logic.Api.Enums;
+﻿using Geolocation.Logic.Api;
+using Geolocation.Logic.Api.Enums;
 using Geolocation.Logic.Api.Models;
 using Geolocation.Logic.Api.Services;
 using Geolocation.ObjectStorage.Api.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Geolocation.Logic.Core.Services
 {
-    public class ScenarioManager : IScenarioManager
+    public class ScenarioManager : IScenarioManager, IObserver
     {
-
         private readonly IScenarioService _scenarioService;
+
         private readonly IScenarioObjectStorage _scenarioObjectStorage;
 
-        public ScenarioManager(IScenarioService scenarioService, IScenarioObjectStorage scenarioObjectStorage)
+        private readonly ITriggerInitiator _triggerInitiator;
+
+        private readonly IActionInitiator _actionInitiator;
+
+        private List<MapObject> _updatedMapObjects;
+
+        public ScenarioManager(IScenarioService scenarioService, IScenarioObjectStorage scenarioObjectStorage, ITriggerInitiator triggerInitiator, IActionInitiator actionInitiator)
         {
             _scenarioService = scenarioService;
             _scenarioObjectStorage = scenarioObjectStorage;
+            _triggerInitiator = triggerInitiator;
+            _actionInitiator = actionInitiator;
+
+            _updatedMapObjects = new List<MapObject>();
+
+            _triggerInitiator.RegisterObserver(this);
+            _actionInitiator.RegisterObserver(this);
+        }
+
+        public void AddUpdatedMapObjects(List<MapObject> mapObjects)
+        {
+            _updatedMapObjects.AddRange(mapObjects);
+        }
+
+        public List<MapObject> GetUpdatedMapObjects()
+        {
+            return _updatedMapObjects;
         }
 
         public void RunScenario(string scenarioId)
@@ -44,28 +63,7 @@ namespace Geolocation.Logic.Core.Services
             mapObject.Marker.Position = updatedMapObject.Marker.Position;
 
             var triggers = _scenarioObjectStorage.GetMapObjectTriggers(updatedMapObject.Id);
-        }
-
-        private void CheckTrigger(List<Trigger> triggers)
-        {
-            foreach (var trigger in triggers)
-            {
-                if (trigger.Type == TriggerType.Attend)
-                {
-
-                }
-            }
-        }
-
-        private void InitAttendTrigger(Trigger trigger)
-        {
-            foreach (var action in trigger.Actions)
-            {
-                if (action.Type == ActionType.ChangeColor)
-                {
-
-                }
-            }
+            _triggerInitiator.Initiate();
         }
     }
 }

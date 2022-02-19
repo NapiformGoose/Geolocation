@@ -11,5 +11,9 @@ namespace Geolocation.ObjectStorage.Api.Services
         MapObject GetMapObject(string mapObjectId);
 
         List<Trigger> GetMapObjectTriggers(string mapObjectId);
+
+        Dictionary<string, Trigger> GetTriggers();
+
+        Dictionary<string, MapObject> GetMapObjects();
     }
 }

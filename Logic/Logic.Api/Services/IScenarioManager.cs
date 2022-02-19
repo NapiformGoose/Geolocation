@@ -10,5 +10,7 @@ namespace Geolocation.Logic.Api.Services
     public interface IScenarioManager
     {
         void UpdateMapObjectState(MapObject mapObject);
+
+        List<MapObject> GetUpdatedMapObjects();
     }
 }

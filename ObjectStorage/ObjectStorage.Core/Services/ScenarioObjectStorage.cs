@@ -34,7 +34,17 @@ namespace Geolocation.ObjectStorage.Core.Services
 
         public List<Trigger> GetMapObjectTriggers(string mapObjectId)
         {
-            return _runningScenario.Triggers.Where(trigger => trigger.InitiatingMapObjectIds.Contains(mapObjectId)).ToList();
+            return _runningScenario.Triggers.Where(trigger => trigger.Initiators.Contains(mapObjectId)).ToList(); //todo инициаторы или ещё и таргеты?
+        }
+
+        public Dictionary<string, Trigger> GetTriggers()
+        {
+            return _runningScenario.Triggers.ToDictionary(trigger => trigger.Id);
+        }
+
+        public Dictionary<string, MapObject> GetMapObjects()
+        {
+            return _runningScenario.MapObjects.ToDictionary(mo => mo.Id);
         }
     }
 }

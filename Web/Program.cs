@@ -30,6 +30,8 @@ builder.Services.AddSingleton<IScenarioObjectStorage, ScenarioObjectStorage>();
 builder.Services.AddTransient<IScenarioService, ScenarioService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IScenarioManager, ScenarioManager>();
+builder.Services.AddTransient<IActionInitiator, ActionInitiator>();
+builder.Services.AddTransient<ITriggerInitiator, TriggerInitiator>();
 
 builder.Services.AddSignalR();
 builder.Services.AddCors();
