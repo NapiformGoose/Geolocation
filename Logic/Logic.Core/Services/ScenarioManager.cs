@@ -60,7 +60,7 @@ namespace Geolocation.Logic.Core.Services
         public void UpdateMapObjectState(MapObject updatedMapObject)
         {
             var mapObject = _scenarioObjectStorage.GetMapObject(updatedMapObject.Id);
-            mapObject.Marker.Position = updatedMapObject.Marker.Position;
+            mapObject.Position = updatedMapObject.Position;
 
             var triggers = _scenarioObjectStorage.GetMapObjectTriggers(updatedMapObject.Id);
             _triggerInitiator.Initiate();

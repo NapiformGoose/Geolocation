@@ -4,7 +4,7 @@
     {
         Undefined,
 
-        Dynamic,
-        Static
+        Rectangle,
+        Сircle
     }
 }

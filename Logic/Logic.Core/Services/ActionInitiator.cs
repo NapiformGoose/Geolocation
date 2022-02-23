@@ -68,7 +68,7 @@ namespace Geolocation.Logic.Core.Services
             }
             foreach (var target in targets)
             {
-                target.Marker.Color = action.NewColor;
+                target.Color = action.NewColor;
                 updatedMapObjects.Add(target);
             }
 

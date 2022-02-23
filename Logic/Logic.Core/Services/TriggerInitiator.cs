@@ -49,8 +49,8 @@ namespace Geolocation.Logic.Core.Services
             {
                 foreach (var initiator in initiators)
                 {
-                    var distance = GetDistance(target.Marker.Position, initiator.Marker.Position);
-                    if (distance <= target.Marker.Size.Radius)
+                    var distance = GetDistance(target.Position, initiator.Position);
+                    if (distance <= target.Size.Radius)
                     {
                         _actionInitiator.Initiate(trigger.Actions);
                     }
